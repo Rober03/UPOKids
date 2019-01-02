@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Tree View -->
+		<record model="ir.ui.view" id="view_upokids_materials_tree">
+			<field name="name">view_upokids_materials_tree</field>
+			<field name="model">material</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Material">
+					<field name="name" />
+					<field name="units" />
+					<field name="description" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record model="ir.ui.view" id="view_upokids_materials_form">
+			<field name="name">view_upokids_materials_form</field>
+			<field name="model">material</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Materials">
+					<group colspan="2">
+						<field name="name" />
+						<field name="units" />
+					</group>
+					<field name="photo" nolabel="1" widget="image" colspan="2" />
+
+					<newline />
+
+					<field name="description" colspan="2" />
+
+					<separator />
+					<newline />
+
+					<field name="upokidsclass_ids" colspan="4" mode="tree">
+						<tree>
+							<field name="name" />
+							<field name="instructor_id" />
+							<field name="start" />
+							<field name="end" />
+						</tree>
+					</field>
+
+				</form>
+			</field>
+		</record>
+
+		<!-- Definicion de Actions -->
+		<record id="act_materials" model="ir.actions.act_window">
+			<field name="name">UPOKids Materials</field>
+			<field name="res_model">material</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Materials" id="materials_submenu" parent="upokids"
+			sequence="100" />
+		<menuitem name="Show materials" id="show_materials_submenu"
+			parent="materials_submenu" sequence="110" action="act_materials" />
+	</data>
+</openerp>

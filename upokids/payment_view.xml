@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Search View -->
+		<record model="ir.ui.view" id="view_upokids_payments_search">
+			<field name="name">view_upokids_classes_search</field>
+			<field name="model">payment</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="payments by student">
+					<group expand="1" string="Group by...">
+						<filter string="Students" icon="terp-project" domain="[]"
+							context="{'group_by':'student_id'}" />
+						<filter string="Date" icon="terp-project" domain="[]"
+							context="{'group_by':'date'}" />
+					</group>
+					<field name="student_id"></field>
+					<field name="activity_ids"></field>
+				</search>
+			</field>
+		</record>
+
+		<!-- Graph View -->
+		<record model="ir.ui.view" id="view_upokids_payments_graph">
+			<field name="name">view_upokids_classes_graph</field>
+			<field name="model">payment</field>
+			<field name="type">graph</field>
+			<field name="arch" type="xml">
+				<graph string="Total euros spent by student">
+					<field name="student_id" group="True" />
+					<field name="amount" operator="+" />
+				</graph>
+			</field>
+		</record>
+
+		<!-- Tree View -->
+		<record model="ir.ui.view" id="view_upokids_payments_tree">
+			<field name="name">view_upokids_classes_tree</field>
+			<field name="model">payment</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Payments">
+					<field name="student_id" />
+					<field name="activity_ids" />
+					<field name="date" />
+					<field name="amount" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record model="ir.ui.view" id="view_upokids_payments_form">
+			<field name="name">view_upokids_classes_form</field>
+			<field name="model">payment</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Payments">
+					<field name="student_id" />
+					<field name="date" />
+					<field name="amount" on_change="onchange_amount(amount)" />
+					<separator />
+					<newline />
+					<field name="activity_ids" colspan="2" mode="tree">
+						<tree>
+							<field name="name" />
+						</tree>
+					</field>
+
+				</form>
+			</field>
+		</record>
+
+		<!-- Definicion de Actions -->
+		<record id="act_payments" model="ir.actions.act_window">
+			<field name="name">UPOKids Payments</field>
+			<field name="res_model">payment</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,graph</field>
+		</record>
+
+		<menuitem name="Payments" id="payments_submenu" parent="upokids"
+			sequence="100" />
+		<menuitem name="Show payments" id="show_payments_submenu"
+			parent="payments_submenu" sequence="110" action="act_payments" />
+	</data>
+</openerp>

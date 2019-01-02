@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Gantt View -->
+		<record id="view_tournament_gantt" model="ir.ui.view">
+			<field name="name">view_tournament_gantt</field>
+			<field name="model">tournament</field>
+			<field name="type">gantt</field>
+			<field name="arch" type="xml">
+				<gantt string="Tournament" color="instructor_id" date_start="start"
+					date_stop="end" default_group_by="instructor_id">
+				</gantt>
+			</field>
+		</record>
+
+		<!-- Tree View -->
+		<record model="ir.ui.view" id="view_upokids_tournaments_tree">
+			<field name="name">view_upokids_tournaments_tree</field>
+			<field name="model">tournament</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="tournaments">
+					<field name="name" />
+					<field name="instructor_id" />
+					<field name="installation_id" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record model="ir.ui.view" id="view_upokids_tournaments_form">
+			<field name="name">view_upokids_tournaments_form</field>
+			<field name="model">tournament</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="tournaments">
+
+					<field name="name" />
+					<group>
+						<field name="start" />
+						<field name="end" />
+					</group>
+
+					<notebook colspan="4">
+						<page string="Material">
+							<field name="material_ids" nolabel="1" colspan="4" mode="tree">
+								<tree>
+									<field name="name" />
+									<field name="description" />
+								</tree>
+							</field>
+							<separator />
+							<newline />
+							<button name="removeMaterial" string="Remove Material" type="object"></button>
+						</page>
+						<page string="External school">
+
+							<field name="number_school"></field>
+							<separator />
+							<newline />
+							<field name="externalschool_ids" colspan="4" nolabel="1" />
+
+						</page>
+						<page string="Instructor">
+							<field name="instructor_id" />
+						</page>
+						<page string="Installation">
+							<field name="installation_id" />
+						</page>
+					</notebook>
+
+				</form>
+			</field>
+		</record>
+
+		<!-- Definicion de Actions -->
+		<record id="act_tournaments" model="ir.actions.act_window">
+			<field name="name">UPOKids Tournaments</field>
+			<field name="res_model">tournament</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,gantt</field>
+		</record>
+
+		<menuitem name="Tournaments" id="tournaments_submenu" parent="upokids"
+			sequence="100" />
+		<menuitem name="Show tournaments" id="show_tournaments_submenu"
+			parent="tournaments_submenu" sequence="110" action="act_tournaments" />
+	</data>
+</openerp>

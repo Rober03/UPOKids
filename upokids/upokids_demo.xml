@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data noupdate="1">
+
+		<!--Demo Activities -->
+		<record id="activity50" model="activity">
+			<field name="name">Futbol</field>
+			<field name="price" eval="30" />
+		</record>
+		<record id="activity51" model="activity">
+			<field name="name">Baloncesto</field>
+			<field name="price" eval="35" />
+		</record>
+		<record id="activity52" model="activity">
+			<field name="name">Tenis</field>
+			<field name="price" eval="25" />
+		</record>
+
+		<!--Demo Students -->
+		<record id="student165" model="student">
+			<field name="name">Karim</field>
+			<field name="subname">Benzema</field>
+			<field name="phone1" eval="660035276" />
+		</record>
+		<record id="student166" model="student">
+			<field name="name">Isco</field>
+			<field name="subname">Alarcon</field>
+			<field name="phone1" eval="870035276" />
+		</record>
+		<record id="student167" model="student">
+			<field name="name">Marcelo</field>
+			<field name="subname">Vieira</field>
+			<field name="phone1" eval="980032270" />
+		</record>
+		<record id="student168" model="student">
+			<field name="name">Keylor</field>
+			<field name="subname">Navas</field>
+			<field name="phone1" eval="350572370" />
+		</record>
+		<record id="student169" model="student">
+			<field name="name">Sergio</field>
+			<field name="subname">Ramos</field>
+			<field name="phone1" eval="982062270" />
+		</record>
+		<record id="student170" model="student">
+			<field name="name">Dani</field>
+			<field name="subname">Carvajal</field>
+			<field name="phone1" eval="982432279" />
+		</record>
+		<record id="student171" model="student">
+			<field name="name">Luka</field>
+			<field name="subname">Modric</field>
+			<field name="phone1" eval="640032270" />
+		</record>
+
+
+		<!--Demo Payments -->
+		<record id="payment10" model="payment">
+			<field name="date">10/01/2019 17:00:00</field>
+			<field name="amount" eval="30" />
+			<field name="activity_ids" eval="[(6,0,[activity50, ])]" />
+			<field name="student_id" ref="student165" />
+		</record>
+		<record id="payment11" model="payment">
+			<field name="date">11/01/2019 17:40:00</field>
+			<field name="amount" eval="30" />
+			<field name="activity_ids" eval="[(6,0,[activity50, ])]" />
+			<field name="student_id" ref="student166" />
+		</record>
+		<record id="payment12" model="payment">
+			<field name="date">09/01/2019 14:00:00</field>
+			<field name="amount" eval="65" />
+			<field name="activity_ids" eval="[(6,0,[activity50, activity51, ])]" />
+			<field name="student_id" ref="student167" />
+		</record>
+		<record id="payment13" model="payment">
+			<field name="date">13/01/2019 11:45:00</field>
+			<field name="amount" eval="65" />
+			<field name="activity_ids" eval="[(6,0,[activity50,activity51, ])]" />
+			<field name="student_id" ref="student168" />
+		</record>
+		<record id="payment14" model="payment">
+			<field name="date">12/01/2019 12:10:00</field>
+			<field name="amount" eval="55" />
+			<field name="activity_ids" eval="[(6,0,[activity50,activity52, ])]" />
+			<field name="student_id" ref="student169" />
+		</record>
+		<record id="payment15" model="payment">
+			<field name="date">08/01/2019 10:30:00</field>
+			<field name="amount" eval="60" />
+			<field name="activity_ids" eval="[(6,0,[activity51,activity52, ])]" />
+			<field name="student_id" ref="student170" />
+		</record>
+		<record id="payment16" model="payment">
+			<field name="date">06/01/2019 12:53:00</field>
+			<field name="amount" eval="25" />
+			<field name="activity_ids" eval="[(6,0,[activity52, ])]" />
+			<field name="student_id" ref="student171" />
+		</record>
+
+		<!--Demo Material -->
+		<record id="material50" model="material">
+			<field name="name">Balon futbol</field>
+			<field name="units" eval="20" />
+			<field name="description">Balon de futbol talla 5 rojo negro</field>
+		</record>
+		<record id="material51" model="material">
+			<field name="name">Balon baloncesto</field>
+			<field name="units" eval="10" />
+			<field name="description">Balon de baloncesto talla 6 naranja</field>
+		</record>
+		<record id="material52" model="material">
+			<field name="name">Raqueta</field>
+			<field name="units" eval="15" />
+			<field name="description">Raqueta tenis artengo</field>
+		</record>
+		<record id="material53" model="material">
+			<field name="name">Pelotas de tenis</field>
+			<field name="units" eval="100" />
+			<field name="description">Pelotas de tenis artengo</field>
+		</record>
+
+		<!--Demo Owner -->
+		<record id="owner40" model="owner">
+			<field name="name">Jose Angel</field>
+			<field name="dni_cif">52988375S</field>
+			<field name="phone" eval="660034271" />
+		</record>
+		<record id="owner41" model="owner">
+			<field name="name">Miguel</field>
+			<field name="dni_cif">32782375S</field>
+			<field name="phone" eval="963057871" />
+		</record>
+
+
+		<!--Demo Installation -->
+		<record id="installation30" model="installation">
+			<field name="name">Pista futbol 3</field>
+			<field name="address">Calle palomar nº18</field>
+			<field name="rentalprice" eval="6" />
+			<field name="owner_id" ref="owner40" />
+		</record>
+		<record id="installation31" model="installation">
+			<field name="name">Pista baloncesto 1</field>
+			<field name="address">Calle palomar nº18</field>
+			<field name="rentalprice" eval="5" />
+			<field name="owner_id" ref="owner40" />
+		</record>
+		<record id="installation32" model="installation">
+			<field name="name">Pista tenis 5</field>
+			<field name="address">Calle reyes catolicos nº23</field>
+			<field name="rentalprice" eval="3" />
+			<field name="owner_id" ref="owner41" />
+		</record>
+
+		<!--Demo Instructor -->
+		<record id="instructor20" model="instructor">
+			<field name="name">Zinedine</field>
+			<field name="subname">Zidane</field>
+			<field name="dni">53987264F</field>
+			<field name="phone1" eval="665728248" />
+			<field name="email">zidane@gmail.com</field>
+		</record>
+		<record id="instructor21" model="instructor">
+			<field name="name">Rafa</field>
+			<field name="subname">Nadal</field>
+			<field name="dni">26787643G</field>
+			<field name="phone1" eval="875728243" />
+		</record>
+		<record id="instructor23" model="instructor">
+			<field name="name">Jose</field>
+			<field name="subname">Mourinho</field>
+			<field name="dni">93783264T"</field>
+			<field name="phone1">435768742</field>
+		</record>
+		<record id="instructor24" model="instructor">
+			<field name="name">LeBron</field>
+			<field name="subname">James</field>
+			<field name="dni">63387238E</field>
+			<field name="phone1" eval="965778248" />
+		</record>
+
+		<!--Demo External Schools -->
+		<record id="externalschool70" model="externalschool">
+			<field name="name">IESO Sierra la Mesta</field>
+			<field name="cif">J4573516D</field>
+			<field name="address">Calle madroñero</field>
+			<field name="phone" eval="525448648" />
+		</record>
+		<record id="externalschool71" model="externalschool">
+			<field name="name">IESO Manzano</field>
+			<field name="cif">G41302431</field>
+			<field name="address">Calle cadiz</field>
+			<field name="phone" eval="763471348" />
+		</record>
+		<record id="externalschool72" model="externalschool">
+			<field name="name">IESO Luis Chamizo</field>
+			<field name="cif">U6481062E</field>
+			<field name="address">Calle esperanza</field>
+			<field name="phone" eval="425478548" />
+			<field name="email">luischamizo@gmail.com</field>
+
+		</record>
+
+		<!--Demo Classes -->
+		<record id="upokidsclass60" model="upokidsclass">
+			<field name="name">Infantil A</field>
+			<field name="start">17/01/2019 17:00:00</field>
+			<field name="end">17/01/2019 18:30:00</field>
+			<field name="capacity" eval="30" />
+			<field name="student_ids" eval="[(6,0,[student165,student166,student167, ])]"></field>
+			<field name="activity_id" ref="activity50" />
+			<field name="instructor_id" ref="instructor23" />
+			<field name="installation_id" ref="installation30" />
+			<field name="material_ids" eval="[(6,0,[material50, ])]"></field>
+		</record>
+		<record id="upokidsclass61" model="upokidsclass">
+			<field name="name">Infantil B</field>
+			<field name="start">17/01/2019 18:30:00</field>
+			<field name="end">17/01/2019 20:00:00</field>
+			<field name="capacity" eval="35" />
+			<field name="student_ids" eval="[(6,0,[student168,student169, ])]"></field>
+			<field name="activity_id" ref="activity50" />
+			<field name="instructor_id" ref="instructor20" />
+			<field name="installation_id" ref="installation30" />
+			<field name="material_ids" eval="[(6,0,[material50, ])]"></field>
+		</record>
+		<record id="upokidsclass62" model="upokidsclass">
+			<field name="name">Cadete A</field>
+			<field name="start">18/01/2019 17:00:00</field>
+			<field name="end">18/01/2019 18:30:00</field>
+			<field name="capacity" eval="30" />
+			<field name="student_ids" eval="[(6,0,[student170,student168,student167, ])]"></field>
+			<field name="activity_id" ref="activity51" />
+			<field name="instructor_id" ref="instructor24" />
+			<field name="installation_id" ref="installation31" />
+			<field name="material_ids" eval="[(6,0,[material51, ])]"></field>
+		</record>
+		<record id="upokidsclass63" model="upokidsclass">
+			<field name="name">Alevin A</field>
+			<field name="start">19/01/2019 17:00:00</field>
+			<field name="end">19/01/2019 18:30:00</field>
+			<field name="capacity" eval="30" />
+			<field name="student_ids" eval="[(6,0,[student170,student169, ])]"></field>
+			<field name="activity_id" ref="activity52" />
+			<field name="instructor_id" ref="instructor21" />
+			<field name="installation_id" ref="installation32" />
+			<field name="material_ids" eval="[(6,0,[material52,material53, ])]"></field>
+		</record>
+		<record id="upokidsclass64" model="upokidsclass">
+			<field name="name">Alevin B</field>
+			<field name="start">19/01/2019 18:30:00</field>
+			<field name="end">19/01/2019 20:00:00</field>
+			<field name="capacity" eval="30" />
+			<field name="student_ids" eval="[(6,0,[student171, ])]"></field>
+			<field name="activity_id" ref="activity52" />
+			<field name="instructor_id" ref="instructor21" />
+			<field name="installation_id" ref="installation32" />
+			<field name="material_ids" eval="[(6,0,[material52,material53, ])]"></field>
+		</record>
+
+		<!--Demo Tournaments -->
+		<record id="tournament100" model="tournament">
+			<field name="name">Torneo Futbol 5</field>
+			<field name="start">19/01/2019 18:30:00</field>
+			<field name="end">19/01/2019 20:00:00</field>
+			<field name="instructor_id" ref="instructor20" />
+			<field name="material_ids" eval="[(6,0,[material50, ])]"></field>
+			<field name="installation_id" ref="installation30" />
+			<field name="externalschool_ids"
+				eval="[(6,0,[externalschool70,externalschool71,externalschool72, ])]"></field>
+		</record>
+
+	</data>
+</openerp>

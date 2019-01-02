@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Tree View -->
+		<record model="ir.ui.view" id="view_upokids_installations_tree">
+			<field name="name">view_upokids_installations_tree</field>
+			<field name="model">installation</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Installations">
+					<field name="name" />
+					<field name="address" />
+					<field name="rentalprice" />
+					<field name="owner_id" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record model="ir.ui.view" id="view_upokids_installations_form">
+			<field name="name">view_upokids_installations_form</field>
+			<field name="model">installation</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Installations">
+					<field name="name" />
+					<field name="address" />
+					<field name="rentalprice" />
+					<field name="owner_id" />
+				</form>
+			</field>
+		</record>
+
+		<!-- Definicion de Actions -->
+		<record id="act_installations" model="ir.actions.act_window">
+			<field name="name">UPOKids Installations</field>
+			<field name="res_model">installation</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Installations" id="installations_submenu"
+			parent="upokids" sequence="100" />
+		<menuitem name="Show installations" id="show_installations_submenu"
+			parent="installations_submenu" sequence="110" action="act_installations" />
+	</data>
+</openerp>

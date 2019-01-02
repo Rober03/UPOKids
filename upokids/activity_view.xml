@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Kanban View -->
+		<record model="ir.ui.view" id="view_activity_kanban">
+			<field name="name">view_activity_kanban</field>
+			<field name="model">activity</field>
+			<field name="type">kanban</field>
+			<field name="arch" type="xml">
+				<kanban create="false">
+					<field name="name" />
+					<field name="photo" />
+					<field name="price" />
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_module_vignette">
+								<img t-att-src="kanban_image('activity', 'photo', record.id.value)"
+									class="oe_module_icon" />
+								<div class="oe_module_desc">
+									<h4>
+										<a type="open">
+											<field name="name" />
+										</a>
+									</h4>
+									<p class="oe_module_name">
+										<i>
+											Price:
+											<field name="price" />
+										</i>
+									</p>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+		<!-- Graph View -->
+		<record model="ir.ui.view" id="view_upokids_graph_view">
+			<field name="name">view_upokids_activities_graph</field>
+			<field name="model">activity</field>
+			<field name="type">graph</field>
+			<field name="arch" type="xml">
+				<graph string="Price by activity">
+					<field name="name" />
+					<field name="price" />
+				</graph>
+			</field>
+		</record>
+
+		<!-- Tree View -->
+		<record model="ir.ui.view" id="view_upokids_tree_view">
+			<field name="name">view_upokids_activities_tree</field>
+			<field name="model">activity</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Activities">
+					<field name="name" />
+					<field name="price" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record model="ir.ui.view" id="view_upokids_activities_form">
+			<field name="name">view_upokids_activities_form</field>
+			<field name="model">activity</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Activities">
+					<group colspan="2">
+						<field name="name" colspan="1" />
+						<field name="price" />
+					</group>
+					<field name="photo" nolabel="1" widget="image" colspan="2" />
+					<separator />
+					<newline />
+					<field name="upokidsclass_ids" colspan="4" mode="tree">
+						<tree>
+							<field name="name" />
+							<field name="start" />
+							<field name="end" />
+							<field name="capacity" />
+						</tree>
+					</field>
+
+				</form>
+			</field>
+		</record>
+
+		<!-- Definicion de Actions -->
+		<record id="act_activity" model="ir.actions.act_window">
+			<field name="name">UPOKids Activities</field>
+			<field name="res_model">activity</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,graph,kanban</field>
+		</record>
+
+		<menuitem id="upokids" name="UPOKids" action="act_activity" />
+		<menuitem name="Activities" id="activities_submenu" parent="upokids"
+			sequence="100" />
+		<menuitem name="Show activities" id="show_activities_submenu"
+			parent="activities_submenu" sequence="110" action="act_activity" />
+	</data>
+</openerp>
+
+

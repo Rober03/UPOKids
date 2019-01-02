@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Kanban View -->
+		<record model="ir.ui.view" id="view_instructor_kanban">
+			<field name="name">view_instructor_kanban</field>
+			<field name="model">instructor</field>
+			<field name="type">kanban</field>
+			<field name="arch" type="xml">
+				<kanban create="false">
+					<field name="name" />
+					<field name="photo" />
+					<field name="phone1" />
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_module_vignette">
+								<img t-att-src="kanban_image('instructor', 'photo', record.id.value)"
+									class="oe_module_icon" />
+								<div class="oe_module_desc">
+									<h4>
+										<a type="open">
+											<field name="name" />
+										</a>
+									</h4>
+									<p class="oe_module_name">
+										<i>
+											Phone:
+											<field name="phone1" />
+										</i>
+									</p>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+
+		<!-- Tree View -->
+		<record model="ir.ui.view" id="view_upokids_instructors_tree">
+			<field name="name">view_upokids_instructors_tree</field>
+			<field name="model">instructor</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Instructors">
+					<field name="name" />
+					<field name="subname" />
+					<field name="dni" />
+					<field name="phone1" />
+					<field name="email" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record model="ir.ui.view" id="view_upokids_instructors_form">
+			<field name="name">view_upokids_instructors_form</field>
+			<field name="model">instructor</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Instructors">
+					<group colspan="2">
+						<field name="name" />
+						<field name="subname" />
+					</group>
+					<field name="photo" nolabel="1" widget="image" colspan="2" />
+					<newline />
+					<field name="dni" />
+					<field name="email" widget="email" />
+					<group colspan="2">
+						<field name="phone1" />
+						<field name="phone2" />
+					</group>
+					<separator />
+					<newline />
+					<field name="upokidsclass_ids" colspan="4" mode="tree">
+						<tree>
+							<field name="name" />
+							<field name="activity_id" />
+							<field name="start" />
+							<field name="end" />
+						</tree>
+					</field>
+				</form>
+			</field>
+		</record>
+
+		<!-- Definicion de Actions -->
+		<record id="act_instructors" model="ir.actions.act_window">
+			<field name="name">UPOKids Instructors</field>
+			<field name="res_model">instructor</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,kanban</field>
+		</record>
+
+		<menuitem name="Instructors" id="instructors_submenu" parent="upokids"
+			sequence="100" />
+		<menuitem name="Show instructor" id="show_instructors_submenu"
+			parent="instructors_submenu" sequence="110" action="act_instructors" />
+	</data>
+</openerp>

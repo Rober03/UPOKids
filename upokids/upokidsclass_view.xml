@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Calendar View -->
+		<record model="ir.ui.view" id="view_upokids_classes_calendar">
+			<field name="name">view_upokids_classes_calendar</field>
+			<field name="model">upokidsclass</field>
+			<field name="type">calendar</field>
+			<field name="arch" type="xml">
+				<calendar string="Classes" color="name" date_start="start" date_stop="end">
+					<field name="name" />
+				</calendar>
+			</field>
+		</record>
+		
+		<!-- Tree View -->
+		<record model="ir.ui.view" id="view_upokids_classes_tree">
+			<field name="name">view_upokids_classes_tree</field>
+			<field name="model">upokidsclass</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Classes">
+					<field name="name" />
+					<field name="start" />
+					<field name="end" />
+					<field name="capacity" />
+					<field name="activity_id" />
+					<field name="instructor_id" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record model="ir.ui.view" id="view_upokids_classes_form">
+			<field name="name">view_upokids_classes_form</field>
+			<field name="model">upokidsclass</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Classes">
+					<field name="name" />
+					<field name="capacity" />
+					<group colspan="2">
+						<field name="start" />
+						<field name="end" />
+					</group>
+					<field name="activity_id" />
+					<field name="instructor_id" />
+					<field name="installation_id" />
+
+					<separator />
+					<newline />
+
+					<field name="student_ids" colspan="4" mode="tree">
+						<tree>
+							<field name="name" />
+							<field name="subname" />
+							<field name="phone1" />
+						</tree>
+					</field>
+				</form>
+			</field>
+		</record>
+
+		<!-- Definicion de Actions -->
+		<record id="act_classes" model="ir.actions.act_window">
+			<field name="name">UPOKids Classes</field>
+			<field name="res_model">upokidsclass</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+		</record>
+
+		<menuitem name="Classes" id="classes_submenu" parent="upokids"
+			sequence="100" />
+		<menuitem name="Show classes" id="show_classes_submenu"
+			parent="classes_submenu" sequence="110" action="act_classes" />
+	</data>
+</openerp>

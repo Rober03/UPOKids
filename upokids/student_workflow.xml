@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Declaración del workflow -->
+		<record id="wkf_student" model="workflow">
+			<field name="name">student.basic</field>
+			<field name="osv">student</field>
+			<field name="on_create">True</field>
+		</record>
+		<!-- Declaración de nodos -->
+		<record id="act_student_applicant" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_student" />
+			<field name="flow_start">True</field>
+			<field name="name">Applicant</field>
+			<field name="kind">dummy</field>
+		</record>
+
+		<record id="act_student_admitted" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_student" />
+			<field name="name">Admitted</field>
+			<field name="action">write({'state':'admitted'})</field>
+			<field name="kind">function</field>
+		</record>
+
+		<record id="act_student_discarded" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_student" />
+			<field name="name">Discarded</field>
+			<field name="action">write({'state':'discarded'})</field>
+			<field name="kind">function</field>
+		</record>
+
+		<record id="act_student_expelled" model="workflow.activity">
+			<field name="wkf_id" ref="wkf_student" />
+			<field name="flow_stop">True</field>
+			<field name="name">Expelled</field>
+			<field name="action">write({'state':'expelled'})</field>
+			<field name="kind">function</field>
+		</record>
+		<!-- Declaración de las transiciones -->
+		<record id="transition_admitted" model="workflow.transition">
+			<field name="act_from" ref="act_student_applicant" />
+			<field name="act_to" ref="act_student_admitted" />
+			<field name="signal">Admitted</field>
+		</record>
+		<record id="transition_discarded" model="workflow.transition">
+			<field name="act_from" ref="act_student_applicant" />
+			<field name="act_to" ref="act_student_discarded" />
+			<field name="signal">Discarded</field>
+		</record>
+		<record id="transition_admitted_expelled" model="workflow.transition">
+			<field name="act_from" ref="act_student_admitted" />
+			<field name="act_to" ref="act_student_expelled" />
+			<field name="signal">Expelled</field>
+		</record>
+
+	</data>
+</openerp>

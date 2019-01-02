@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Kanban View -->
+		<record model="ir.ui.view" id="view_student_kanban">
+			<field name="name">view_student_kanban</field>
+			<field name="model">student</field>
+			<field name="type">kanban</field>
+			<field name="arch" type="xml">
+				<kanban create="false">
+					<field name="name" />
+					<field name="photo" />
+					<field name="phone1" />
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_module_vignette">
+								<img t-att-src="kanban_image('student', 'photo', record.id.value)"
+									class="oe_module_icon" />
+								<div class="oe_module_desc">
+									<h4>
+										<a type="open">
+											<field name="name" />
+										</a>
+									</h4>
+									<p class="oe_module_name">
+										<i>
+											Phone:
+											<field name="phone1" />
+										</i>
+									</p>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<!-- Tree View -->
+		<record model="ir.ui.view" id="view_upokids_students_tree">
+			<field name="name">view_upokids_students_tree</field>
+			<field name="model">student</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Students">
+					<field name="name" />
+					<field name="subname" />
+					<field name="phone1" />
+					<field name="phone2" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record model="ir.ui.view" id="view_upokids_students_form">
+			<field name="name">view_upokids_students_form</field>
+			<field name="model">student</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Students">
+
+					<group colspan="2">
+						<field name="name" />
+						<field name="subname" />
+					</group>
+					<field name="photo" nolabel="1" widget="image" colspan="2" />
+					<newline />
+					<group colspan="2">
+						<field name="phone1" />
+						<field name="phone2" />
+					</group>
+
+					<separator />
+					<newline />
+
+					<field name="payment_ids" colspan="4" mode="tree">
+						<tree>
+							<field name="activity_ids" />
+							<field name="date" />
+							<field name="amount" />
+						</tree>
+					</field>
+
+					<separator />
+					<newline />
+
+					<field name="state" widget="statusbar"
+						statusbar_visible="applicant, discarded, admitted, expelled"
+						statusbar_colors='{"applicant":"orange", "discarded":"green", 
+						"admitted":"red", "expelled":"red"}'
+						nolabel="1" colspan="4" />
+
+					<separator />
+					<newline />
+
+					<group colspan="2">
+						<group>
+							<button name="Admitted" states="applicant" string="Admitted"
+								colspan="1" icon="gtk-apply" />
+						</group>
+						<group>
+							<button name="Discarded" states="applicant" string="Discarded"
+								colspan="1" icon="gtk-cancel" />
+						</group>
+						<group>
+							<button name="Expelled" states="admitted" string="Expelled"
+								colspan="1" icon="gtk-cancel" />
+						</group>
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<!-- Definicion de Actions -->
+		<record id="act_student" model="ir.actions.act_window">
+			<field name="name">UPOKids Students</field>
+			<field name="res_model">student</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,kanban</field>
+		</record>
+
+		<menuitem name="Students" id="students_submenu" parent="upokids"
+			sequence="100" />
+		<menuitem name="Show students" id="show_students_submenu"
+			parent="students_submenu" sequence="110" action="act_student" />
+	</data>
+</openerp>

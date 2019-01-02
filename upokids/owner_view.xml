@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<!-- Tree View -->
+		<record model="ir.ui.view" id="view_upokids_owners_tree">
+			<field name="name">view_upokids_owners_tree</field>
+			<field name="model">owner</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Owners">
+					<field name="name" />
+					<field name="dni_cif" />
+					<field name="phone" />
+					<field name="email" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record model="ir.ui.view" id="view_upokids_owners_form">
+			<field name="name">view_upokids_owners_form</field>
+			<field name="model">owner</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Owner">
+					<field name="name" />
+					<field name="dni_cif" />
+					<field name="phone" />
+					<field name="email" widget="email" />
+
+					<separator />
+					<newline />
+
+					<field name="installation_ids" colspan="3" mode="tree">
+						<tree>
+							<field name="name" />
+							<field name="address" />
+						</tree>
+					</field>
+				</form>
+			</field>
+		</record>
+
+		<!-- Definicion de Actions -->
+		<record id="act_owners" model="ir.actions.act_window">
+			<field name="name">UPOKids Owners</field>
+			<field name="res_model">owner</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Owners" id="owners_submenu" parent="upokids"
+			sequence="100" />
+		<menuitem name="Show owners" id="show_owners_submenu" parent="owners_submenu"
+			sequence="110" action="act_owners" />
+	</data>
+</openerp>

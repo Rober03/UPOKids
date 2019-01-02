@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding/__init__.py=utf-8
+encoding/__openerp__.py=utf-8
+encoding/activity.py=utf-8
+encoding/externalschool.py=utf-8
+encoding/installation.py=utf-8
+encoding/instructor.py=utf-8
+encoding/material.py=utf-8
+encoding/owner.py=utf-8
+encoding/payment.py=utf-8
+encoding/student.py=utf-8
+encoding/tournament.py=utf-8
+encoding/upokidsclass.py=utf-8
